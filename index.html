@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ToDoアプリ</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>List Tasks</h1>
+      <input class="form-add" type="text" placeholder="Enter task" v-on:keyup.enter="addTask" v-model="newTask">
+    </div>
+    <ul class="task-list">
+      <li v-for="task in tasks">
+        <div v-on:dblclick="editTask(task)">
+          <p v-if="task !== editingTask">{{task.content}}</p>
+          <button class="close" v-on:click="deleteTask(task)">x</button>
+        </div>
+        <input class="form-edit" type="text" v-if="task === editingTask" v-model="editingContent" v-on:keyup.enter="updateTask(task)">
+      </li>
+    </ul>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>
